@@ -1,0 +1,7 @@
+C:\Users\s199010\source\repos\IntroToCSharpEverything\Trig\Trig\bin\Debug\Trig.exe.config
+C:\Users\s199010\source\repos\IntroToCSharpEverything\Trig\Trig\bin\Debug\Trig.exe
+C:\Users\s199010\source\repos\IntroToCSharpEverything\Trig\Trig\bin\Debug\Trig.pdb
+C:\Users\s199010\source\repos\IntroToCSharpEverything\Trig\Trig\obj\Debug\Trig.csprojAssemblyReference.cache
+C:\Users\s199010\source\repos\IntroToCSharpEverything\Trig\Trig\obj\Debug\Trig.csproj.CoreCompileInputs.cache
+C:\Users\s199010\source\repos\IntroToCSharpEverything\Trig\Trig\obj\Debug\Trig.exe
+C:\Users\s199010\source\repos\IntroToCSharpEverything\Trig\Trig\obj\Debug\Trig.pdb
