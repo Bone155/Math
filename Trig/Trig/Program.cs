@@ -70,7 +70,7 @@ namespace Trig
             {
                 angleC = (Math.Pow(Aside, 2) + Math.Pow(Bside, 2) - Math.Pow(Cside, 2)) / (2 * Bside * Aside);
                 double a = Math.Acos(angleC);
-                return a;
+                return RadToDeg(a);
             }
             else if (Aside == 0)
             {
@@ -89,7 +89,9 @@ namespace Trig
             }
             else
             {
-                return angleC;
+                double angleA = 0;
+                LawSin(Cside, angleC, Aside, angleA);
+                return 180 - (angleC - angleA);
             }
         }
     }
@@ -108,7 +110,7 @@ namespace Trig
             //Console.Write(ex.LawSin(0, 1.37881, 13, 0.645772));//Aside = (13 * Sin(79)) / Sin(37)
             Console.WriteLine();
 
-            Console.Write(ex.LawCos(0, 8, 9, 6));//8^2 = 6^2 + 9^2 - 2(6)(9)cos(C)
+            Console.Write(ex.LawCos(0, 6, 9, 8));//8^2 = 6^2 + 9^2 - 2(6)(9)cos(C)
             Console.WriteLine();
 
             Console.ReadKey();
