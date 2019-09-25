@@ -99,17 +99,24 @@ namespace Binary
             return isSet;
         }
 
-        public int GetRightMost(uint value)
+        public uint GetRightMost(uint A, uint B)
         {
-            int setRight = 0;
+            uint result;
+            uint bit;
             for (int i = 0; i < ; i++)
             {
-                if (value ==  1)
-                     ;
-                //else
-                //    setRight = -1;
+                if (A&B == B)
+                {
+                    result = 1;
+                    bit = A & B;
+                }
+                else
+                {
+                    result = 0;
+                }
+                return result;
             }
-            return setRight;
+            return bit;
         }
     }
 
@@ -120,6 +127,7 @@ namespace Binary
             Exercises ex = new Exercises();
             uint.TryParse(Console.ReadLine(), out uint num);
             uint bin = 0100101110;
+            uint bin2 = 0000001000;
             //ex.DecToBin(num);
             Console.WriteLine();
 
@@ -135,7 +143,7 @@ namespace Binary
             //Console.Write(ex.IsBitSet(Console.ReadLine()));
             Console.WriteLine();
 
-            Console.Write(ex.GetRightMost(bin));
+            Console.Write(ex.GetRightMost(bin, bin2));
             Console.WriteLine();
 
             Console.ReadKey();
