@@ -15,65 +15,101 @@ namespace Matrix
             this.y = y;
             this.z = z;
         }
+
+        public void Print()
+        {
+            Console.WriteLine(x + ", " + y + ", " + z);
+        }
     }
 
     class Matrix3
     {
         float[,] m = new float[3, 3];
 
-        float Xx = m[0, 0];
-        float Xy = m[0, 1];
-        float Xz = m[0, 2];
-
-        float Yx = m[1, 0];
-        float Yy = m[1, 1];
-        float Yz = m[1, 2];
-
-        float Zx = m[2, 0];
-        float Zy = m[2, 1];
-        float Zz = m[2, 2];
-
         public Matrix3(float Xx, float Xy, float Xz, float Yx, float Yy, float Yz, float Zx, float Zy, float Zz)
         {
-            this.Xx = Xx;
-            this.Xy = Xy;
-            this.Xz = Xz;
+            m[0, 0] = Xx;
+            m[1, 0] = Xy;
+            m[2, 0] = Xz;
 
-            this.Yx = Yx;
-            this.Yy = Yy;
-            this.Yz = Yz;
+            m[0, 1] = Yx;
+            m[1, 1] = Yy;
+            m[2, 1] = Yz;
 
-            this.Zx = Zx;
-            this.Zy = Zy;
-            this.Zz = Zz;
+            m[0, 2] = Zx;
+            m[1, 2] = Zy;
+            m[2, 2] = Zz;
         }
 
         public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
         {
-            return new Matrix3(lhs.Xx * rhs.Xx + lhs.Yx * rhs.Xy + lhs.Zx * rhs.Xz,
-                                lhs.Xx * rhs.Yx + lhs.Yx * rhs.Yy + lhs.Zx * rhs.Yz,
-                                lhs.Xx * rhs.Zx + lhs.Yx * rhs.Zy + lhs.Zx * rhs.Zz,
-                                lhs.Xy * rhs.Xx + lhs.Yy * rhs.Xy + lhs.Zy * rhs.Xz,
-                                lhs.Xy * rhs.Yx + lhs.Yy * rhs.Yy + lhs.Zy * rhs.Yz,
-                                lhs.Xy * rhs.Zx + lhs.Yy * rhs.Zy + lhs.Zy * rhs.Zz,
-                                lhs.Xz * rhs.Xx + lhs.Yz * rhs.Xy + lhs.Zz * rhs.Xz,
-                                lhs.Xz * rhs.Yx + lhs.Yz * rhs.Yy + lhs.Zz * rhs.Yz,
-                                lhs.Xz * rhs.Zx + lhs.Yz * rhs.Zy + lhs.Zz * rhs.Zz);
+            return new Matrix3
+            ( 
+                //X
+                lhs.m[0, 0] * rhs.m[0, 0] + lhs.m[1, 0] * rhs.m[0, 1] + lhs.m[2, 0] * rhs.m[0, 2],
+                lhs.m[0, 0] * rhs.m[1, 0] + lhs.m[1, 0] * rhs.m[1, 1] + lhs.m[2, 0] * rhs.m[1, 2],
+                lhs.m[0, 0] * rhs.m[2, 0] + lhs.m[1, 0] * rhs.m[2, 1] + lhs.m[2, 0] * rhs.m[2, 2],
+
+                //Y
+                lhs.m[0, 1] * rhs.m[0, 0] + lhs.m[1, 1] * rhs.m[0, 1] + lhs.m[2, 1] * rhs.m[0, 2],
+                lhs.m[0, 1] * rhs.m[1, 0] + lhs.m[1, 1] * rhs.m[1, 1] + lhs.m[2, 1] * rhs.m[1, 2],
+                lhs.m[0, 1] * rhs.m[2, 0] + lhs.m[1, 1] * rhs.m[2, 1] + lhs.m[2, 1] * rhs.m[2, 2],
+
+                //Z
+                lhs.m[0, 2] * rhs.m[0, 0] + lhs.m[1, 2] * rhs.m[0, 1] + lhs.m[2, 2] * rhs.m[0, 2],
+                lhs.m[0, 2] * rhs.m[1, 0] + lhs.m[1, 2] * rhs.m[1, 1] + lhs.m[2, 2] * rhs.m[1, 2],
+                lhs.m[0, 2] * rhs.m[2, 0] + lhs.m[1, 2] * rhs.m[2, 1] + lhs.m[2, 2] * rhs.m[2, 2]
+            );
+        }
+        
+        public void Print()
+        {
+            Console.WriteLine(m[0, 0].ToString() + ", " + m[1, 0].ToString() + ", " + m[2, 0].ToString());
+            Console.WriteLine(m[0, 1].ToString() + ", " + m[1, 1].ToString() + ", " + m[2, 1].ToString());
+            Console.WriteLine(m[0, 2].ToString() + ", " + m[1, 2].ToString() + ", " + m[2, 2].ToString());
         }
 
         public static Vector3 operator *(Matrix3 lhs, Vector3 rhs)
         {
-            return new Vector3((lhs.Xx * rhs.x) + (lhs.Xy * rhs.y) + (lhs.Xz * rhs.z),
-                                (lhs.Yx * rhs.x) + (lhs.Yy * rhs.y) + (lhs.Yz * rhs.z),
-                                (lhs.Zx * rhs.x) + (lhs.Zy * rhs.y) + (lhs.Zz * rhs.z));
+            return new Vector3((lhs.m[0, 0] * rhs.x) + (lhs.m[0, 1] * rhs.y) + (lhs.m[0, 2] * rhs.z),
+                                (lhs.m[1, 0] * rhs.x) + (lhs.m[1, 1] * rhs.y) + (lhs.m[1, 2] * rhs.z),
+                                (lhs.m[1, 0] * rhs.x) + (lhs.m[2, 1] * rhs.y) + (lhs.m[2, 2] * rhs.z));
         }
 
         public Matrix3 GetTansposed()
         {
             // flip row and column
-            return new Matrix3(Xx, Yx, Zx,
-                                Xy, Yy, Zy,
-                                Xz, Yz, Zz);
+            return new Matrix3
+            (
+                m[0, 0], m[0, 1], m[0, 2],
+                m[1, 0], m[1, 1], m[1, 2],
+                m[2, 0], m[2, 1], m[2, 2]
+            );
+        }
+
+        public Vector3 GetXAxis()
+        {
+            return new Vector3(m[0, 0], m[1, 0], m[2, 0]);
+        }
+        public Vector3 GetYAxis()
+        {
+            return new Vector3(m[0, 1], m[1, 1], m[2, 1]);
+        }
+
+        public Vector3 GetZAxis()
+        {
+            return new Vector3(m[0, 2], m[1, 2], m[2, 2]);
+        }
+
+        public static Matrix3 Indentity()
+        {
+            //Flat identity
+            return new Matrix3
+            (
+                1, 0, 0,
+                0, 1, 0,
+                0, 0, 1
+            );
         }
     }
 }
