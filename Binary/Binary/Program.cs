@@ -99,24 +99,30 @@ namespace Binary
             return isSet;
         }
 
-        public uint GetRightMost(uint A, uint B)
+        public uint GetRightMost(string A, string B)
         {
+            char[] array = A.ToCharArray();
+            char[] array2 = B.ToCharArray();
+            Array.Reverse(array);
+            Array.Reverse(array2);
             uint result;
-            uint bit;
-            for (int i = 0; i < ; i++)
+            for (int i = 0; i < A.Length && i < B.Length; i++)
             {
-                if (A&B == B)
-                {
-                    result = 1;
-                    bit = A & B;
-                }
+                if (array[i] == '1' && array2[i] == '0')//A&B == B
+                    result = '0';//A & B
+
+                else if (array[i] == '0' && array2[i] == '1')
+                    result = '0';
+
+                else if (array[i] == '1' && array2[i] == '1')
+                    result = '1';
+
                 else
-                {
-                    result = 0;
-                }
+                    result = '0';
+                
                 return result;
             }
-            return bit;
+            return result;
         }
     }
 
@@ -126,8 +132,8 @@ namespace Binary
         {
             Exercises ex = new Exercises();
             uint.TryParse(Console.ReadLine(), out uint num);
-            uint bin = 0100101110;
-            uint bin2 = 0000001000;
+            string bin = "0100101110";
+            string bin2 = "0000001000";
             //ex.DecToBin(num);
             Console.WriteLine();
 
