@@ -11,7 +11,7 @@ namespace Matrix
         static void Main()
         {
             //int.TryParse(Console.ReadLine(), out int input);
-            Matrix3 matrix = new Matrix3(1, 2, 3, 4, 5, 6, 7, 8, 9);
+            Matrix3 matrix = new Matrix3(1, 4, 7, 2, 5, 8, 3, 6, 9);
 
             Console.Write(matrix*matrix);
             Console.WriteLine();

@@ -19,47 +19,61 @@ namespace Matrix
 
     class Matrix3
     {
-        public float m1, m2, m3, m4, m5, m6, m7, m8, m9;
+        float[,] m = new float[3, 3];
 
-        public Matrix3(float m1, float m4, float m7, float m2, float m5, float m8, float m3, float m6, float m9)
+        float Xx = m[0, 0];
+        float Xy = m[0, 1];
+        float Xz = m[0, 2];
+
+        float Yx = m[1, 0];
+        float Yy = m[1, 1];
+        float Yz = m[1, 2];
+
+        float Zx = m[2, 0];
+        float Zy = m[2, 1];
+        float Zz = m[2, 2];
+
+        public Matrix3(float Xx, float Xy, float Xz, float Yx, float Yy, float Yz, float Zx, float Zy, float Zz)
         {
-            this.m1 = m1;
-            this.m4 = m4;
-            this.m7 = m7;
-            this.m2 = m2;
-            this.m5 = m5;
-            this.m8 = m8;
-            this.m3 = m3;
-            this.m6 = m6;
-            this.m9 = m9;
+            this.Xx = Xx;
+            this.Xy = Xy;
+            this.Xz = Xz;
+
+            this.Yx = Yx;
+            this.Yy = Yy;
+            this.Yz = Yz;
+
+            this.Zx = Zx;
+            this.Zy = Zy;
+            this.Zz = Zz;
         }
 
         public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
         {
-            return new Matrix3(lhs.m1 * rhs.m1 + lhs.m4 * rhs.m2 + lhs.m7 * rhs.m3,
-                                lhs.m1 * rhs.m4 + lhs.m4 * rhs.m5 + lhs.m7 * rhs.m6,
-                                lhs.m1 * rhs.m7 + lhs.m4 * rhs.m8 + lhs.m7 * rhs.m9,
-                                lhs.m2 * rhs.m1 + lhs.m5 * rhs.m2 + lhs.m8 * rhs.m3,
-                                lhs.m2 * rhs.m4 + lhs.m5 * rhs.m5 + lhs.m8 * rhs.m6,
-                                lhs.m2 * rhs.m7 + lhs.m5 * rhs.m8 + lhs.m8 * rhs.m9,
-                                lhs.m3 * rhs.m1 + lhs.m6 * rhs.m2 + lhs.m9 * rhs.m3,
-                                lhs.m3 * rhs.m4 + lhs.m6 * rhs.m5 + lhs.m9 * rhs.m6,
-                                lhs.m3 * rhs.m7 + lhs.m6 * rhs.m8 + lhs.m9 * rhs.m9);
+            return new Matrix3(lhs.Xx * rhs.Xx + lhs.Yx * rhs.Xy + lhs.Zx * rhs.Xz,
+                                lhs.Xx * rhs.Yx + lhs.Yx * rhs.Yy + lhs.Zx * rhs.Yz,
+                                lhs.Xx * rhs.Zx + lhs.Yx * rhs.Zy + lhs.Zx * rhs.Zz,
+                                lhs.Xy * rhs.Xx + lhs.Yy * rhs.Xy + lhs.Zy * rhs.Xz,
+                                lhs.Xy * rhs.Yx + lhs.Yy * rhs.Yy + lhs.Zy * rhs.Yz,
+                                lhs.Xy * rhs.Zx + lhs.Yy * rhs.Zy + lhs.Zy * rhs.Zz,
+                                lhs.Xz * rhs.Xx + lhs.Yz * rhs.Xy + lhs.Zz * rhs.Xz,
+                                lhs.Xz * rhs.Yx + lhs.Yz * rhs.Yy + lhs.Zz * rhs.Yz,
+                                lhs.Xz * rhs.Zx + lhs.Yz * rhs.Zy + lhs.Zz * rhs.Zz);
         }
 
         public static Vector3 operator *(Matrix3 lhs, Vector3 rhs)
         {
-            return new Vector3((lhs.m1 * rhs.x) + (lhs.m2 * rhs.y) + (lhs.m3 * rhs.z),
-                                (lhs.m4 * rhs.x) + (lhs.m5 * rhs.y) + (lhs.m6 * rhs.z),
-                                (lhs.m7 * rhs.x) + (lhs.m8 * rhs.y) + (lhs.m9 * rhs.z));
+            return new Vector3((lhs.Xx * rhs.x) + (lhs.Xy * rhs.y) + (lhs.Xz * rhs.z),
+                                (lhs.Yx * rhs.x) + (lhs.Yy * rhs.y) + (lhs.Yz * rhs.z),
+                                (lhs.Zx * rhs.x) + (lhs.Zy * rhs.y) + (lhs.Zz * rhs.z));
         }
 
         public Matrix3 GetTansposed()
         {
             // flip row and column
-            return new Matrix3(m1, m4, m7,
-                                m2, m5, m8,
-                                m3, m6, m9);
+            return new Matrix3(Xx, Yx, Zx,
+                                Xy, Yy, Zy,
+                                Xz, Yz, Zz);
         }
     }
 }
