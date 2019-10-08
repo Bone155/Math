@@ -93,7 +93,8 @@ namespace MagAndNorm
         //Vector2 GetPerpendicularRH()
         //{
         //    return { -y, x };
-        //}
+        //}
+
         //Vector2 GetPerpendicularLH()
         //{
         //    return { y, -x };
