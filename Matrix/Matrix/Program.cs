@@ -259,7 +259,7 @@ namespace Matrix
                                     0, (float)Math.Cos(radians), (float)Math.Sin(radians), 0, 
                                     0, (float)-Math.Sin(radians), (float)Math.Cos(radians), 0, 
                                     0, 0, 0, 1);
-            Set(m);
+            Set(this * m);
         }
 
         public void SetRotateY(double radians)
@@ -268,7 +268,7 @@ namespace Matrix
                                     0, 1, 0, 0,
                                     (float)Math.Sin(radians), 0, (float)Math.Cos(radians), 0, 
                                     0, 0, 0, 1);
-            Set(m);
+            Set(this * m);
         }
 
         public void SetRotateZ(double radians)
@@ -277,7 +277,7 @@ namespace Matrix
                                     (float)-Math.Sin(radians), (float)Math.Cos(radians), 0, 0, 
                                     0, 0, 1, 0, 
                                     0, 0, 0, 1);
-            Set(m);
+            Set(this * m);
         }
 
         public void Scale(float x, float y, float z)
@@ -453,21 +453,21 @@ namespace Matrix
         {
             Matrix3 m = new Matrix3();
             m.SetRotateX(radians);
-            Set(m);
+            Set(this * m);
         }
 
         public void RotateY(double radians)
         {
             Matrix3 m = new Matrix3();
             m.SetRotateY(radians);
-            Set(m);
+            Set(this * m);
         }
 
         public void RotateZ(double radians)
         {
             Matrix3 m = new Matrix3();
             m.SetRotateZ(radians);
-            Set(m);
+            Set(this * m);
         }
 
         public void SetTranslation(float x, float y)
