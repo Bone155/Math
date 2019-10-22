@@ -19,22 +19,17 @@ namespace Binary
             return reverse;
         }
 
-        public void DecToBin(uint n)
+        public string DecToBin(uint n)
         {
-            string binary = "";
-            while (n >= 1)
+            int mask = 1;
+            var binary = string.Empty;
+            while (n > 0)
             {
-                if (n % 2 == 0)
-                {
-                    binary += "0";
-                }
-                else if (n % 2 == 1)
-                {
-                    binary += "1";
-                }
-                n /= 2;
+                binary = (n & mask) + binary;
+                n = n >> 1;
             }
-            Console.WriteLine(Reverse(binary));
+            binary = binary.PadLeft(8, '0');
+            return binary;
         }
 
         public uint BinToDec(string bin)
@@ -134,7 +129,7 @@ namespace Binary
             uint.TryParse(Console.ReadLine(), out uint num);
             string bin = "0100101110";
             string bin2 = "0000001000";
-            //ex.DecToBin(num);
+            ex.DecToBin(num);
             Console.WriteLine();
 
             //Console.Write(ex.BinToDec(Console.ReadLine()));
@@ -149,7 +144,7 @@ namespace Binary
             //Console.Write(ex.IsBitSet(Console.ReadLine()));
             Console.WriteLine();
 
-            Console.Write(ex.GetRightMost(bin, bin2));
+            //Console.Write(ex.GetRightMost(bin, bin2));
             Console.WriteLine();
 
             Console.ReadKey();
