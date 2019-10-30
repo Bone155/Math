@@ -11,7 +11,7 @@ namespace Binary
         public string Reverse(string text)
         {
             char[] cArray = text.ToCharArray();
-            string reverse = String.Empty;
+            string reverse = string.Empty;
             for (int i = cArray.Length - 1; i > -1; i--)
             {
                 reverse += cArray[i];
@@ -19,17 +19,22 @@ namespace Binary
             return reverse;
         }
 
-        public string DecToBin(uint n)
+        public void DecToBin(uint n)
         {
-            int mask = 1;
-            var binary = string.Empty;
-            while (n > 0)
+            string binary = "";
+            while (n >= 1)
             {
-                binary = (n & mask) + binary;
-                n = n >> 1;
+                if (n % 2 == 0)
+                {
+                    binary += "0";
+                }
+                else if (n % 2 == 1)
+                {
+                    binary += "1";
+                }
+                n /= 2;
             }
-            binary = binary.PadLeft(8, '0');
-            return binary;
+            Console.WriteLine(Reverse(binary));
         }
 
         public uint BinToDec(string bin)
@@ -94,14 +99,13 @@ namespace Binary
             return isSet;
         }
 
-        public uint GetRightMost(string A, string B)
+        public uint GetRightMost(string A)
         {
             char[] array = A.ToCharArray();
-            char[] array2 = B.ToCharArray();
+            char[] array2 = A.ToCharArray();
             Array.Reverse(array);
-            Array.Reverse(array2);
-            uint result;
-            for (int i = 0; i < A.Length && i < B.Length; i++)
+            uint result = 0;
+            for (int i = 0; i < array.Length && i < array2.Length; i++)
             {
                 if (array[i] == '1' && array2[i] == '0')//A&B == B
                     result = '0';//A & B
@@ -115,7 +119,6 @@ namespace Binary
                 else
                     result = '0';
                 
-                return result;
             }
             return result;
         }
@@ -126,25 +129,30 @@ namespace Binary
         static void Main()
         {
             Exercises ex = new Exercises();
-            uint.TryParse(Console.ReadLine(), out uint num);
-            string bin = "0100101110";
-            string bin2 = "0000001000";
-            ex.DecToBin(num);
+            //uint.TryParse(Console.ReadLine(), out uint num);
+            string bin = "10011100";
+            uint number = 49;
+            ex.DecToBin(number);
             Console.WriteLine();
 
-            //Console.Write(ex.BinToDec(Console.ReadLine()));
+            Console.Write(ex.BinToDec(bin));
+            Console.WriteLine();
             Console.WriteLine();
 
-            //Console.Write(ex.IsLeftMost(Console.ReadLine()));
+            Console.Write(ex.IsLeftMost(bin));
+            Console.WriteLine();
             Console.WriteLine();
 
-            //Console.Write(ex.IsRightMost(Console.ReadLine()));
+            Console.Write(ex.IsRightMost(bin));
+            Console.WriteLine();
             Console.WriteLine();
 
-            //Console.Write(ex.IsBitSet(Console.ReadLine()));
+            Console.Write(ex.IsBitSet(bin));
+            Console.WriteLine();
             Console.WriteLine();
 
-            //Console.Write(ex.GetRightMost(bin, bin2));
+            Console.Write(ex.GetRightMost(bin));
+            Console.WriteLine();
             Console.WriteLine();
 
             Console.ReadKey();
